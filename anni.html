@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Anniversary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #f5e1e1, #fce4ec);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            padding: 30px;
+            max-width: 600px;
+            width: 90%;
+        }
+        .question {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .letter {
+            display: none;
+            background: url('https://www.transparenttextures.com/patterns/paper-fibers.png'), #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1 {
+            color: #c2185b;
+            font-family: 'Parisienne', cursive;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        p {
+            color: #333;
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #e91e63;
+        }
+        .heart {
+            color: #e91e63;
+            font-size: 1.5em;
+            animation: pulse 1.5s infinite;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s, font-size 0.3s;
+        }
+        #yesBtn {
+            background: #e91e63;
+            color: white;
+        }
+        #noBtn {
+            background: #ccc;
+            color: #333;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
+            button {
+                font-size: 1em;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="question" id="question">
+            <h1>Huni</h1>
+            <p>Will you celebrate our anniversary with me? <span class="heart">♥</span></p>
+            <div class="buttons">
+                <button id="yesBtn">Yes</button>
+                <button id="noBtn">No</button>
+            </div>
+        </div>
+        <div class="letter" id="letter">
+            <h1>Happy Anniversary, Baby!</h1>
+            <p>Thank you for 4 years!</p>
+            <p>It's been a long journey together, and I've had a lot of great things happening to me this year thanks to you. I love every single thing we've done this year, from late night movies to just sitting in calls to do nothing which I really do like sometimes cuz I don't wanna talk much on some day(maybe I'm just tired, maybe my brain needs to shutdown) but I still wanna have calls with you. And not to mention, one of the most important part of this year, I'd say one of our long awaiting moment, me having a cat. I really love Kem and I really love you for this birthday present, I hope we can cherish her more in the future. As for you, my other half, I hope we will be happy together forever, I wish for you to achieve great things in your life and to be happy and successful with what you choose to pursue in the future.</p><span class="heart">♥</span></p>
+        
+            <p>Iu em</p>
+            <p>Sonhit</p>
+        </div>
+    </div>
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const question = document.getElementById('question');
+        const letter = document.getElementById('letter');
+        let noClickCount = 0;
+
+        yesBtn.addEventListener('click', () => {
+            question.style.display = 'none';
+            letter.style.display = 'block';
+        });
+
+        noBtn.addEventListener('click', () => {
+            noClickCount++;
+            const scale = 1 + noClickCount * 0.5;
+            yesBtn.style.transform = `scale(${scale})`;
+            yesBtn.style.fontSize = `${1.2 + noClickCount * 0.3}em`;
+            
+            // Move "No" button randomly
+            const maxX = window.innerWidth - noBtn.offsetWidth;
+            const maxY = window.innerHeight - noBtn.offsetHeight;
+            const newX = Math.random() * maxX;
+            const newY = Math.random() * maxY;
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = `${newX}px`;
+            noBtn.style.top = `${newY}px`;
+
+            if (noClickCount > 3) {
+                noBtn.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
